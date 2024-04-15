@@ -1,10 +1,8 @@
 "use client";
 import { WebPlaybackSDK } from "react-spotify-web-playback-sdk";
-import stylesS from "./components/PlayerContent.module.css";
-import { PlayerController } from "./components/PlayerController";
 import { Player } from "./player";
-import { StateConsumer } from "./components/StateConsumer";
 import { TokenProvider } from "./components/provider";
+import { SpotifyDevTools } from "~/lib/react-spotify/dev-tools";
 
 export const PlayerProvider = (props: { token: string }) => {
   return (
@@ -16,10 +14,7 @@ export const PlayerProvider = (props: { token: string }) => {
         initialVolume={0.05}
       >
         <Player />
-        <PlayerController />
-        <div className={stylesS.stateConsumer}>
-          <StateConsumer />
-        </div>
+        <SpotifyDevTools />
       </WebPlaybackSDK>
     </TokenProvider>
   );

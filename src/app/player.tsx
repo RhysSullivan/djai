@@ -9,9 +9,7 @@ import {
   usePlaybackState,
   usePlayerDevice,
   useSpotifyPlayer,
-  useWebPlaybackSDKReady,
 } from "react-spotify-web-playback-sdk";
-import { takeControl } from "./components/PlayerController";
 import { useTokenContext } from "./components/provider";
 import {
   Popover,
@@ -19,6 +17,7 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 import { DotFilledIcon, PauseIcon, PlayIcon } from "@radix-ui/react-icons";
+import { takeControl } from "~/lib/react-spotify/actions";
 function ConnectedIndicator() {
   const playbackState = usePlaybackState(true, 100);
 
@@ -91,16 +90,14 @@ export function Player() {
         </div>
       </div>
       <div className="relative">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          alt="Starry Night"
+          alt={playback?.track_window?.current_track?.name ?? "No track"}
           className="h-64 w-full object-cover"
           height="300"
           src={
             playback?.track_window?.current_track?.album?.images[0]?.url ?? ""
           }
-          style={{
-            objectFit: "cover",
-          }}
           width="300"
         />
         <div className="absolute inset-0 flex items-center justify-center">
