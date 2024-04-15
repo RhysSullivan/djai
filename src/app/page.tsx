@@ -23,7 +23,7 @@ export default async function HomePage() {
       </main>
     );
   return (
-    <main className="flex min-h-screen flex-col bg-gradient-to-b from-[#2e026d] to-[#15162c] pt-8 text-white">
+    <main className="min-h-screen bg-neutral-950 pt-8">
       <PlayerProvider token={validToken.token} />
     </main>
   );

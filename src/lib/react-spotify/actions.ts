@@ -5,6 +5,7 @@ export function takeControl(input: { accessToken: string; deviceId: string }) {
       device_ids: [input.deviceId],
       play: false,
     }),
+    cache: "no-store",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${input.accessToken}`,

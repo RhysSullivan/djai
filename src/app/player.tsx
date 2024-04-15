@@ -43,7 +43,6 @@ export function Player() {
   const playerDevice = usePlayerDevice();
   const playback = usePlaybackState();
   const player = useSpotifyPlayer();
-  console.log(playerDevice);
 
   // TODO: Make auto transfer work
   useEffect(() => {

@@ -150,6 +150,7 @@ export function SpotifyDevTools() {
   if (!devToolsActive)
     return (
       <button
+        aria-label="Open Spotify Dev Tools"
         onClick={() => setDevToolsActive(true)}
         className="absolute bottom-5 left-5"
       >
@@ -161,7 +162,7 @@ export function SpotifyDevTools() {
       </button>
     );
   return (
-    <div className="absolute bottom-5 left-5 flex h-[600px] w-[75vw] max-w-[1000px] flex-row gap-4 rounded-xl bg-neutral-900/90 p-4">
+    <div className="absolute bottom-5 left-5 flex h-[600px] w-[75vw] max-w-[1000px] flex-row gap-4 rounded-xl bg-neutral-900/90 p-4 text-white">
       <button
         onClick={() => setDevToolsActive(false)}
         className="absolute right-2 top-2 text-2xl"

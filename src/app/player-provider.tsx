@@ -8,9 +8,9 @@ export const PlayerProvider = (props: { token: string }) => {
   return (
     <TokenProvider token={props.token}>
       <WebPlaybackSDK
-        initialDeviceName="Spotify Player on Next.js"
+        initialDeviceName="DJ AI Spotify Player"
         getOAuthToken={(callback) => callback(props.token)}
-        connectOnInitialized={true}
+        connectOnInitialized={false}
         initialVolume={0.05}
       >
         <Player />
