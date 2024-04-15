@@ -1,9 +1,25 @@
 import { useSpotifyPlayer } from "react-spotify-web-playback-sdk";
 import styles from "./PlayerController.module.css";
 import { useState } from "react";
+import { useTokenContext } from "./provider";
+
+export function takeControl(input: { accessToken: string; deviceId: string }) {
+  void fetch(`https://api.spotify.com/v1/me/player`, {
+    method: "PUT",
+    body: JSON.stringify({
+      device_ids: [input.deviceId],
+      play: false,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${input.accessToken}`,
+    },
+  });
+}
 
 export const PlayerController = () => {
   const player = useSpotifyPlayer();
+  const { token } = useTokenContext();
   const [volume, setVolumeRaw] = useState(player?._options?.volume ?? 0.0);
   const setVolume = (v: number, player: Spotify.Player) => {
     setVolumeRaw(v);
@@ -37,6 +53,17 @@ export const PlayerController = () => {
         </button>
         <button className={styles.action} onClick={() => player.disconnect()}>
           <code>player.disconnect</code>
+        </button>
+        <button
+          className={styles.action}
+          onClick={() =>
+            takeControl({
+              accessToken: token,
+              deviceId: player._options.id,
+            })
+          }
+        >
+          <code>player.takeControl</code>
         </button>
         {/* slider for 0 to 1 volumne */}
         <input
